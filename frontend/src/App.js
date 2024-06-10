@@ -3,7 +3,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
 import HomePage from "./pages/HomePage";
-import EventsPage from "./pages/EventsPage";
+import EventsPage, { loader as eventPageLoader } from "./pages/EventsPage";
 import NewEventPage from "./pages/NewEventPage";
 import EventDetailPage from "./pages/EventDetail";
 import EditEventPage from "./pages/EditEvent";
@@ -43,17 +43,7 @@ function App() {
             {
               index: true,
               element: <EventsPage />,
-              loader: async () => {
-                const response = await fetch("http://localhost:5005/events");
-
-                if (!response.ok) {
-                  // setError("Fetching events failed.");
-                } else {
-                  const resData = await response.json();
-                  // setFetchedEvents(resData.events);
-                  return resData.events;
-                }
-              },
+              loader: eventPageLoader,
             },
             { path: "new", element: <NewEventPage></NewEventPage> },
             {
