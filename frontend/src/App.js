@@ -56,9 +56,10 @@ function App() {
             {
               path: ":id",
               element: <EventDetailPage></EventDetailPage>,
-              loader: ({ params }) => {
-                return eventPageDetailLoader(params.id);
-              },
+              // loader: ({ params }) => {
+              //   return eventPageDetailLoader(params.id);
+              // },
+              loader: ({ params }) => eventPageDetailLoader(params.id),
             },
             {
               path: ":id/edit",
