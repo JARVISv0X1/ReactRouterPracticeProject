@@ -13,7 +13,7 @@ function EventsPage() {
 export default EventsPage;
 
 export async function loader() {
-  const response = await fetch("http://localhost:5005/eventds");
+  const response = await fetch("http://localhost:5005/events");
 
   if (!response.ok) {
     // setError("Fetching events failed.");
