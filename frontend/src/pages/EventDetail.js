@@ -1,13 +1,14 @@
 import { Link, json, useLoaderData, useParams } from "react-router-dom";
 // import { eventList } from "../eventList";
-import { useEffect, useState } from "react";
-import classes from "./PageContent.module.css";
+// import { useEffect, useState } from "react";
+// import classes from "./PageContent.module.css";
+import EventItem from "../components/EventItem";
 
 function EventDetailPage() {
   const data = useLoaderData();
   const eventData = data.event;
-  const parms = useParams();
-  const [eventDetails, setEventDetails] = useState([]);
+  // const parms = useParams();
+  // const [eventDetails, setEventDetails] = useState([]);
   // useEffect(() => {
   //   setEventDetails(
   //     eventList.filter((data) => {
@@ -18,7 +19,8 @@ function EventDetailPage() {
 
   return (
     <>
-      <div className={classes.content}>
+      <EventItem event={eventData} />
+      {/* <div className={classes.content}>
         <h1>EventDetailPage</h1>
         <h4>EventId: {eventData.id}</h4>
         <h2>Event Title: {eventData.title}</h2>
@@ -27,12 +29,13 @@ function EventDetailPage() {
           <img src={eventData.image} alt={eventData.title} width="20%" />
         </div>
         <Link to={`/events/${eventData.id}/edit`}>Edit Event</Link>
-      </div>
+      </div> */}
     </>
   );
 }
 export default EventDetailPage;
-export async function eventPageDetailLoader(id) {
+export async function eventPageDetailLoader({ request, params }) {
+  const id = params.id;
   const response = await fetch(`http://localhost:5005/events/${id}`);
   if (!response.ok) {
     throw json(
@@ -43,8 +46,8 @@ export async function eventPageDetailLoader(id) {
       }
     );
   } else {
-    const resData = response.json();
-    console.log(resData);
-    return resData;
+    // const resData = response.json();
+    // console.log(resData);
+    return response;
   }
 }

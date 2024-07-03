@@ -59,7 +59,7 @@ function App() {
               // loader: ({ params }) => {
               //   return eventPageDetailLoader(params.id);
               // },
-              loader: ({ params }) => eventPageDetailLoader(params.id),
+              loader: eventPageDetailLoader,
             },
             {
               path: ":id/edit",
