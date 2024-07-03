@@ -8,8 +8,8 @@ export default function ErrorPage() {
   let message = "Somthing Went Wrong!";
 
   if (error.status === 500) {
-    title = JSON.parse(error.data).title;
-    message = JSON.parse(error.data).message;
+    title = error.data.title;
+    message = error.data.message;
   }
   if (error.status === 404) {
     title = "Page Not Found";
