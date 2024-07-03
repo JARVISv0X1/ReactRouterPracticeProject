@@ -55,15 +55,22 @@ function App() {
             { path: "new", element: <NewEventPage></NewEventPage> },
             {
               path: ":id",
-              element: <EventDetailPage></EventDetailPage>,
-              // loader: ({ params }) => {
-              //   return eventPageDetailLoader(params.id);
-              // },
               loader: eventPageDetailLoader,
-            },
-            {
-              path: ":id/edit",
-              element: <EditEventPage></EditEventPage>,
+              id: "eventData",
+              children: [
+                {
+                  index: true,
+                  element: <EventDetailPage></EventDetailPage>,
+                  // loader: ({ params }) => {
+                  //   return eventPageDetailLoader(params.id);
+                  // },
+                },
+                {
+                  path: "edit",
+                  element: <EditEventPage></EditEventPage>,
+                  loader: eventPageDetailLoader,
+                },
+              ],
             },
           ],
         },
