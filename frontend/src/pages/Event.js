@@ -10,7 +10,7 @@ function EventsPage() {
   useEffect(() => {
     async function fetchEvents() {
       setIsLoading(true);
-      const response = await fetch("http://localhost:5005/events");
+      const response = await fetch("http://localhost:5005/eventsmererererer");
 
       if (!response.ok) {
         setError("Fetching events failed.");
