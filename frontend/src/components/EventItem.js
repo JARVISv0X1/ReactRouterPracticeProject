@@ -1,9 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, json, redirect, useNavigate } from "react-router-dom";
 import classes from "./EventItem.module.css";
 
 function EventItem({ event }) {
-  function startDeleteHandler() {
+  const navigate = useNavigate();
+  async function startDeleteHandler() {
     // ...
+    const response = await fetch(`http://localhost:5005/events/${event.id}`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      throw json({ message: "Error Deleting Event" }, { status: 500 });
+    }
+    return navigate("/events");
   }
   return (
     <article className={classes.event}>
