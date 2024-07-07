@@ -1,5 +1,6 @@
 import { json, redirect } from "react-router-dom";
 import EventForm from "../components/EventForm";
+import { toast } from "react-toastify";
 
 export default function NewEventPage() {
   return (
@@ -25,7 +26,11 @@ export async function action({ request, param }) {
     headers: { "Content-Type": "application/json" },
   });
   if (!response.ok) {
+    const errorData = await response.json();
+    toast.error(errorData.message);
     throw json({ message: "Error while adding data" }, { status: 500 });
   }
+  const responseData = await response.json();
+  toast.success(responseData.message);
   return redirect("/events");
 }

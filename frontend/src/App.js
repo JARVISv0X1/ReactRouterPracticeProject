@@ -6,10 +6,13 @@ import HomePage from "./pages/HomePage";
 import EventsPage, { loader as eventPageLoader } from "./pages/EventsPage";
 import NewEventPage from "./pages/NewEventPage";
 import EventDetailPage, { eventPageDetailLoader } from "./pages/EventDetail";
-import EditEventPage from "./pages/EditEvent";
+import EditEventPage, { action as editEventAction } from "./pages/EditEvent";
 import EventRootLayout from "./pages/EventRootLayout";
 import ErrorPage from "./pages/ErrorPage";
 import { action as addNewEventAction } from "./pages/NewEventPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 // 1. Add five new (dummy) page components (content can be simple <h1> elements)
 //    - HomePage
 //    - EventsPage
@@ -68,6 +71,7 @@ function App() {
                   path: "edit",
                   element: <EditEventPage></EditEventPage>,
                   loader: eventPageDetailLoader,
+                  action: editEventAction,
                 },
               ],
             },
@@ -76,7 +80,12 @@ function App() {
       ],
     },
   ]);
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <>
+      <RouterProvider router={router}></RouterProvider>
+      <ToastContainer />
+    </>
+  );
 }
 
 export default App;

@@ -1,5 +1,6 @@
-import { Link, json, redirect, useNavigate } from "react-router-dom";
+import { Link, json, useNavigate } from "react-router-dom";
 import classes from "./EventItem.module.css";
+import { toast } from "react-toastify";
 
 function EventItem({ event }) {
   const navigate = useNavigate();
@@ -9,8 +10,12 @@ function EventItem({ event }) {
       method: "DELETE",
     });
     if (!response.ok) {
-      throw json({ message: "Error Deleting Event" }, { status: 500 });
+      const errorData = await response.json();
+      toast.error(errorData.message);
+      throw json({ message: "Error while adding data" }, { status: 500 });
     }
+    const responseData = await response.json();
+    toast.success(responseData.message);
     return navigate("/events");
   }
   return (
