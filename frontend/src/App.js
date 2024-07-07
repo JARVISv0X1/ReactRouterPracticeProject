@@ -1,10 +1,6 @@
 // Challenge / Exercise
 
-import {
-  RouterProvider,
-  createBrowserRouter,
-  useParams,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
 import HomePage from "./pages/HomePage";
 import EventsPage, { loader as eventPageLoader } from "./pages/EventsPage";
@@ -13,7 +9,7 @@ import EventDetailPage, { eventPageDetailLoader } from "./pages/EventDetail";
 import EditEventPage from "./pages/EditEvent";
 import EventRootLayout from "./pages/EventRootLayout";
 import ErrorPage from "./pages/ErrorPage";
-
+import { action as addNewEventAction } from "./pages/NewEventPage";
 // 1. Add five new (dummy) page components (content can be simple <h1> elements)
 //    - HomePage
 //    - EventsPage
@@ -35,7 +31,6 @@ import ErrorPage from "./pages/ErrorPage";
 // BONUS: Add another (nested) layout route that adds the <EventNavigation> component above all /events... page components
 
 function App() {
-  const parms = useParams();
   const router = createBrowserRouter([
     {
       path: "/",
@@ -52,7 +47,11 @@ function App() {
               element: <EventsPage />,
               loader: eventPageLoader,
             },
-            { path: "new", element: <NewEventPage></NewEventPage> },
+            {
+              path: "new",
+              element: <NewEventPage></NewEventPage>,
+              action: addNewEventAction,
+            },
             {
               path: ":id",
               loader: eventPageDetailLoader,
