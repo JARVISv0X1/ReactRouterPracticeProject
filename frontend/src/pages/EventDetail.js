@@ -1,10 +1,4 @@
-import {
-  Link,
-  json,
-  useLoaderData,
-  useParams,
-  useRouteLoaderData,
-} from "react-router-dom";
+import { json, useRouteLoaderData } from "react-router-dom";
 // import { eventList } from "../eventList";
 // import { useEffect, useState } from "react";
 // import classes from "./PageContent.module.css";

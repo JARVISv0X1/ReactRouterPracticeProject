@@ -83,7 +83,7 @@ function App() {
   return (
     <>
       <RouterProvider router={router}></RouterProvider>
-      <ToastContainer />
+      <ToastContainer stacked />
     </>
   );
 }
