@@ -12,6 +12,9 @@ import ErrorPage from "./pages/ErrorPage";
 import { action as addNewEventAction } from "./pages/NewEventPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NewsletterPage, {
+  action as newsletterAction,
+} from "./pages/NewsletterPage";
 
 // 1. Add five new (dummy) page components (content can be simple <h1> elements)
 //    - HomePage
@@ -75,7 +78,17 @@ function App() {
                 },
               ],
             },
+            {
+              path: "new",
+              element: <NewEventPage />,
+              action: editEventAction,
+            },
           ],
+        },
+        {
+          path: "newsletter",
+          element: <NewsletterPage />,
+          action: newsletterAction,
         },
       ],
     },
